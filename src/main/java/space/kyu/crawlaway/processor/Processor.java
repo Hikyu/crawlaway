@@ -1,7 +1,9 @@
 package space.kyu.crawlaway.processor;
 
+import java.util.List;
+
 import space.kyu.crawlaway.entity.Page;
-import space.kyu.crawlaway.entity.ResultItem;
+import space.kyu.crawlaway.entity.ResultItems;
 
 /**
  * 页面处理接口
@@ -9,5 +11,5 @@ import space.kyu.crawlaway.entity.ResultItem;
  * @date 2016年12月9日
  */
 public interface Processor {
-	public ResultItem processPage(Page page);
+	public List<ResultItems> processPage(Page page);
 }
