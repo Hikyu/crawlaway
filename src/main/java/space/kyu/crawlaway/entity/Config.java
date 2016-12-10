@@ -13,9 +13,9 @@ import java.util.Map;
  * @date 2016年12月9日
  */
 public class Config {
-	//抓取间隔时间
+	// 抓取间隔时间
 	private int sleepTime;
-	//抓取队列为空时程序等待时间
+	// 抓取队列为空时程序等待时间
 	private int exitEmptyQueueTime = 10 * 60 * 1000;
 	private String domain;
 	private Map<String, String> cookies;
@@ -25,7 +25,7 @@ public class Config {
 	private int timeOut = 5000;
 	private Map<String, String> headers;
 	private int reTryTime = 0;
-	
+
 	{
 		cookies = new LinkedHashMap<String, String>();
 		startRequests = new ArrayList<Request>();
@@ -54,10 +54,14 @@ public class Config {
 	}
 
 	public Config setCookies(String cookies) {
-		//TODO 解析多个cookies拼接的字符串
+		String[] cookiesArray = cookies.trim().split(";");
+		for (String cookie : cookiesArray) {
+			String[] keyValue = cookie.trim().split("=");
+			this.cookies.put(keyValue[0], keyValue[1]);
+		}
 		return this;
 	}
-	
+
 	public Config addCookie(String key, String value) {
 		cookies.put(key, value);
 		return this;
@@ -71,7 +75,7 @@ public class Config {
 		this.startRequests = startRequests;
 		return this;
 	}
-	
+
 	public Config addUrl(String url) {
 		Request request = new Request(url);
 		startRequests.add(request);
@@ -84,8 +88,8 @@ public class Config {
 
 	public Config setThreadNum(int threadNum) {
 		if (threadNum <= 0) {
-            throw new IllegalArgumentException("线程数不得少于1!");
-        }
+			throw new IllegalArgumentException("线程数不得少于1!");
+		}
 		this.threadNum = threadNum;
 		return this;
 	}
@@ -124,7 +128,7 @@ public class Config {
 	public void setHeaders(Map<String, String> headers) {
 		this.headers = headers;
 	}
-	
+
 	public void addHeader(String key, String value) {
 		headers.put(key, value);
 	}
@@ -137,7 +141,5 @@ public class Config {
 		this.reTryTime = reTryTime;
 		return this;
 	}
-	
-	
 
 }
