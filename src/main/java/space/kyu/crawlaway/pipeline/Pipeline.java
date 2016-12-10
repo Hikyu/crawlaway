@@ -1,7 +1,5 @@
 package space.kyu.crawlaway.pipeline;
 
-import java.util.List;
-
 import space.kyu.crawlaway.entity.ResultItems;
 
 /**
@@ -10,5 +8,5 @@ import space.kyu.crawlaway.entity.ResultItems;
  * @date 2016年12月9日
  */
 public interface Pipeline {
-	public void pipeline(List<ResultItems> resultItems);
+	public void pipeline(ResultItems resultItems);
 }

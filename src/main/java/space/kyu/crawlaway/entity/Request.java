@@ -1,4 +1,7 @@
 package space.kyu.crawlaway.entity;
+
+import org.apache.http.NameValuePair;
+
 /**
  * 下载请求
  * @author yukai
@@ -7,8 +10,12 @@ package space.kyu.crawlaway.entity;
 public class Request {
 	private String url;
 	private String method;
-	private String postData;
+	private NameValuePair[] postData;
 	private long priority;
+	
+	public Request(String url) {
+		this.url = url;
+	}
 	
 	@Override
 	public String toString() {
@@ -50,10 +57,10 @@ public class Request {
 		this.method = method;
 		return this;
 	}
-	public String getPostData() {
+	public NameValuePair[] getPostData() {
 		return postData;
 	}
-	public Request setPostData(String postData) {
+	public Request setPostData(NameValuePair[] postData) {
 		this.postData = postData;
 		return this;
 	}

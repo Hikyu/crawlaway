@@ -9,7 +9,5 @@ import space.kyu.crawlaway.entity.Request;
  * @date 2016年12月9日
  */
 public interface Downloader {
-	public Page download(Request request);
-	
-	public Config getDownloadConfig();
+	public Page download(Request request, Config crawlConfig);
 }
