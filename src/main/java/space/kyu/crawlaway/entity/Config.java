@@ -2,9 +2,11 @@ package space.kyu.crawlaway.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 爬取页面的配置
@@ -25,13 +27,17 @@ public class Config {
 	private int timeOut = 5000;
 	private Map<String, String> headers;
 	private int reTryTime = 0;
+	private Set<Integer> acceptCodes;
 
 	{
 		cookies = new LinkedHashMap<String, String>();
 		startRequests = new ArrayList<Request>();
 		headers = new HashMap<String, String>();
+		acceptCodes = new HashSet<>();
+		acceptCodes.add(200);
 	}
 
+	
 	public int getSleepTime() {
 		return sleepTime;
 	}
@@ -129,8 +135,9 @@ public class Config {
 		this.headers = headers;
 	}
 
-	public void addHeader(String key, String value) {
+	public Config addHeader(String key, String value) {
 		headers.put(key, value);
+		return this;
 	}
 
 	public int getReTryTime() {
@@ -141,5 +148,18 @@ public class Config {
 		this.reTryTime = reTryTime;
 		return this;
 	}
+	
+	public void addAcceptCode(int code) {
+		acceptCodes.add(code);
+	}
 
+	public Set<Integer> getAcceptCodes() {
+		return acceptCodes;
+	}
+
+	public void setAcceptCodes(Set<Integer> acceptCodes) {
+		this.acceptCodes = acceptCodes;
+	}
+
+	
 }

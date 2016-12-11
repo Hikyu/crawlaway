@@ -62,5 +62,9 @@ public class Page {
 		processResult.setRequest(request);
 	}
 	
+	public void putField(String key, Object value){
+		processResult.putField(key, value);
+	}
+	
 	
 }

@@ -133,6 +133,9 @@ public class Crawler implements Runnable {
 
 	private void processRequest(Request request) {
 		Page page = downloader.download(request, crawlConfig);
+		if (page == null) {
+			throw new RuntimeException("页面下载失败...");
+		}
 		pageProcessor.processPage(page);
 		addTargetRequest(page);
 		if (!page.getProcessResult().isSkip()) {
