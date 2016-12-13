@@ -87,6 +87,18 @@ public class Config {
 		startRequests.add(request);
 		return this;
 	}
+	
+	public Config addUrl(String url, Object info) {
+		Request request = new Request(url);
+		request.setExtraInfo(info);
+		startRequests.add(request);
+		return this;
+	}
+	
+	public Config addRequest(Request request) {
+		startRequests.add(request);
+		return this;
+	}
 
 	public int getThreadNum() {
 		return threadNum;

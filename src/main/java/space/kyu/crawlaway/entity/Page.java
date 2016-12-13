@@ -15,6 +15,7 @@ public class Page {
 	private Request request;
 	private ResultItems processResult;
 	private List<Request> targetRequests;
+	private Object extraInfo;
 	
 	{
 		targetRequests = new ArrayList<Request>();
@@ -66,5 +67,11 @@ public class Page {
 		processResult.putField(key, value);
 	}
 	
+	public void setExtraInfo(Object info) {
+		this.extraInfo = info;
+	}
 	
+	public Object getExtraInfo() {
+		return extraInfo;
+	}
 }

@@ -13,7 +13,6 @@ public abstract class DuplicateRemovedScheduler implements Scheduler {
 	public void push(Request request) {
 		if (open) {
 			if (urls.add(request.getUrl())) {
-				System.out.println(request.getUrl());
 				pushWhenNoDuplicate(request);
 			}
 		} else {

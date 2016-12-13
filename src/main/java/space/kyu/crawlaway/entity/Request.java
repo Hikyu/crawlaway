@@ -2,6 +2,8 @@ package space.kyu.crawlaway.entity;
 
 import org.apache.http.NameValuePair;
 
+import com.sun.org.apache.regexp.internal.recompile;
+
 /**
  * 下载请求
  * @author yukai
@@ -12,6 +14,8 @@ public class Request {
 	private String method;
 	private NameValuePair[] postData;
 	private long priority;
+	//用户附加信息
+	private Object extraInfo;
 	
 	public Request(String url) {
 		this.url = url;
@@ -72,5 +76,12 @@ public class Request {
 		return this;
 	}
 	
+	public void setExtraInfo(Object info) {
+		this.extraInfo = info;
+	}
+	
+	public Object getExtraInfo() {
+		return extraInfo;
+	}
 	
 }

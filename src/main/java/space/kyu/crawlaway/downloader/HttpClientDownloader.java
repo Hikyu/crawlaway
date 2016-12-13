@@ -68,12 +68,13 @@ public class HttpClientDownloader implements Downloader {
 		try {
 			HttpUriRequest httpUriRequest = getHttpUriRequest(request, crawlConfig);
 			resp = getHttpClient(crawlConfig).execute(httpUriRequest);
-			Page page = handleResponse(resp, request);
-			if (crawlConfig.getAcceptCodes().contains(page.getStatusCode())) {
+			int statusCode = resp.getStatusLine().getStatusCode();
+			if (crawlConfig.getAcceptCodes().contains(statusCode)) {
+				Page page = handleResponse(resp, request);
 				logger.info("页面{} 下载完成", request.getUrl());
 				return page;
 			} else {
-				logger.error("错误的status code:{}", page.getStatusCode());
+				logger.error("错误的status code:{}", statusCode);
 				return null;
 			}
 		} catch (IOException e) {
@@ -96,6 +97,7 @@ public class HttpClientDownloader implements Downloader {
 		page.setContent(content);
 		page.setRequest(request);
 		page.setStatusCode(resp.getStatusLine().getStatusCode());
+		page.setExtraInfo(request.getExtraInfo());
 		return page;
 	}
 
